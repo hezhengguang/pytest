@@ -1,4 +1,4 @@
-# pytestmaster
+# jira-dingding push script
 programming practices
 
 The script final.py is writed on Python3, and only support running on Python3.
