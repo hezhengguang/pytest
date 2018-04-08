@@ -15,13 +15,15 @@ url = "https://oapi.dingtalk.com/robot/send?access_token=858a351e387c017d89f275e
 h = {"Content-Type" : "application/json;charset=utf-8"}
 
 #赋值一个变量，使其与检索到的最新bug key做比较
-i = 10174
+issueslist = P1.search_issues('project = "P1" and created >= "-10d"',maxResults=10)
+bugkey = str(issueslist[0])
+i = int(bugkey[3:]) 
 
 ##构建一个无限循环，使最新的bug被发送至钉钉机器人
 while True:
     issueslist = P1.search_issues('project = "P1" and created >= "-10d"',maxResults=10)
     bugkey = str(issueslist[0])
-    bug = bugkey[3:]           #取到最新bug的key和具体数字
+    bug = int(bugkey[3:])           #取到最新bug的key和具体数字
 
     issue = P1.issue(bugkey)
     summary = issue.fields.summary  #取到最新bug的summary
@@ -38,15 +40,15 @@ while True:
         "messageUrl":link,
          }
       }
-    bugmsg = json.dumps(bugmsg)
+    bugmsg = json.dumps(bugmsg)  #将数据转换为json格式，因为钉钉post内容只支持json  
     
-    if int(bug) == i:
+    if bug <= i:
         time.sleep(10) #程序挂起10秒（为防止运行过于频繁,造成内存资源占用过度）
         continue
 
     else:
         r = requests.post(url, data=bugmsg, headers=h) #请求钉钉机器人webhook接口的完整请求
-        i = i+1
+        i = bug
         time.sleep(10) 
         continue    
 
