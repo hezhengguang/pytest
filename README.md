@@ -12,3 +12,6 @@ It is only used in P1 group, thanks!
 
 4.8
 更新V1.1.1 更改了循环逻辑，规避了删除issue导致的循环逻辑bug
+
+4.11
+更新了2个脚本  一个是bug验证即时推送脚本（bug reminder）  一个是统计针对组内所有成员的待验证bug推送脚本（verification reminder）
