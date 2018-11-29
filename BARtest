@@ -1,0 +1,64 @@
+#!/usr/bin/python3
+# -*- coding:UTF-8 -*-
+
+import operator
+
+#把数据库导出的txt文件，取出所有userid并组成列表1
+F1 = open('/Users/hezhengguang/Downloads/Untitled.txt')
+Line_DB = F1.readline()
+li_1 = []
+while Line_DB !="":
+    s = Line_DB[:21]
+    s1 = int(eval(s))
+    li_1.append(s1)
+    Line_DB = F1.readline()
+F1.close()
+
+#把google云盘维护名单中导出的txt文件，取出所有userid并组成列表2
+F2 = open('/Users/hezhengguang/Downloads/Untitled11.txt')
+Line_XQ = F2.readline()
+li_2 = []
+while Line_XQ !="":
+    y = int(Line_XQ[:19])
+    li_2.append(y)
+    Line_XQ = F2.readline()
+F2.close
+
+#取出表1和表2的交集，即流失的维护R的userid，组成列表Result_1
+Result_1 = []
+for a in li_1:
+    if a in li_2:
+        Result_1.append(a)
+Result_1 = Result_1.sort()
+
+#取出表1和表2的差集，即流失的未维护R的userid，组成列表Result_2
+Result_2 = []
+for b in li_1:
+    if b not in li_2:
+        Result_2.append(b)
+Result_2 = Result_2.sort()
+
+#将邮件中维护R名单的userid取出组成列表，并与Result_1比较
+F3 = open('/Users/hezhengguang/Downloads/Untitled111.txt','r',encoding='iso-8859-1')
+Line_M = F3.readline()
+li_3 = []
+while Line_M !="":
+    z = int(Line_M[8:27])
+    li_3.append(z)
+    Line_M = F3.readline()
+F3.close()
+li_3 = li_3.sort()
+print("微信维护R流失名单比对结果：",Result_1==li_3)
+
+#将邮件中未维护R名单的userid取出组成列表，并与Result_2比较
+F4 = open('/Users/hezhengguang/Downloads/Untitled1111.txt','r',encoding='iso-8859-1')
+Line_M1 = F4.readline()
+li_4 = []
+while Line_M1 !="":
+    x = int(Line_M1[8:27])
+    li_4.append(x)
+    Line_M1 = F4.readline()
+F4.close()
+li_4 = li_4.sort()
+print("未维护R流失名单比对结果：",Result_2==li_4)
+
