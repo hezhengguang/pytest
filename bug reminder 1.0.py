@@ -6,7 +6,7 @@ import requests
 import json
 
 #与jira建连
-P1 = JIRA('http://qa.nibirutech.com/jira',basic_auth=('hezhengguang','Hzgdhr1234'))
+P1 = JIRA('http://qa.nibirutech.com/jira',basic_auth=('account','password'))
 
 #钉钉机器人webhook接口地址
 url = "https://oapi.dingtalk.com/robot/send?access_token=858a351e387c017d89f275e926ef65779cfe27673219e3a1f18d768991313e29"
