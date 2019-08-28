@@ -4,7 +4,7 @@ from jira import JIRA
 import requests
 import json
 
-P1 = JIRA('http://qa.nibirutech.com/jira',basic_auth=('hezhengguang','Hzgdhr1234'))
+P1 = JIRA('http://qa.nibirutech.com/jira',basic_auth=('account','password'))
 
 def url_filter(self):
     url = "http://qa.nibirutech.com/jira/issues/?filter=-4&jql=project%20%3D%20%22P1%22%20and%20created%20%3E%3D%20%22-20d%22%20and%20status%20%3D%20%22待验证%22%20and%20reporter%20%3D%20"+self
